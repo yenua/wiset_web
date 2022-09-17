@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Posting!</title>
+    </head>
+    <body>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+        <br>
+        <br>
+        <center>  <h1>게시글 내용</h1> </center> 
+        <div class="container my-3">
+            <table class="table">
+                <tr>
+                    <td class="table-info" width="200"><b>제목</b></td>
+                    <td>{{post.postname}}</td>
+                </tr>
+                    <td class="table-info" width="200"><b>내용</b></td>
+                    <td>{{post.contents}}</td>
+                    {% if post.mainphoto %}
+                        <img src = "{{ post.mainphoto.url }}" alt="" height="600">
+                        <br>
+                    {% endif %}
+                </tr>
+            </table>
+            <button><a href="/board/{{post.pk}}/remove">삭제</a></button>
+            <button><a href="/board/">목록</a></button>
+        </div>
+    </body>
+</html>

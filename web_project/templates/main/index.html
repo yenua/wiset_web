@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>장고 페이지</title>
+</head>
+<body>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <br>
+    <br>
+    <center> 
+        <h1>첫 장고 페이지! with wiset</h1>
+        <br>
+        <br>
+        <button><a href="board/">게시글 목록</a></button>
+        {% if user.is_authenticated %}
+        <button><a href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a></button>
+        {% else %}
+        <button><a href="{% url 'common:login' %}">로그인</a></button>
+        {% endif %}
+        {% if not user.is_authenticated %}
+        <button><a class="nav-link" href="{% url 'common:signup' %}">회원가입</a></button>
+        {% endif %}
+    </center>
+</body>
+</html>

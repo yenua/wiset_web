@@ -1,0 +1,35 @@
+
+<html>
+    <head>
+        <title>Board List</title>
+    </head>
+    <body>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+        <br>
+        <br>
+        <center>  <h1>게시글 목록</h1> </center> 
+        <!-- 게시판(postlist)의 게시글(list)을 하나씩 보여줍니다 -->
+        <!-- 괄호퍼센트 내부엔 파이썬이 사용됩니다 -->
+        <div class="container my-3">
+            <table class="table">
+                <tr class="table-info">
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                </tr>
+                {% for list in postlist %}
+                <!-- 게시글 클릭시 세부페이지로 넘어갑니다-->
+                <tr>
+                    <td>{{list.pk}}</td>
+                    <td><a href="{{list.pk}}/">{{list.postname}}</a></td>
+                    <td>{{list.author}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="mb-3">
+                <button {% if not user.is_authenticated %}disabled{% endif %}><a href="new_post/">글쓰기</a></button>
+            </div>
+        </div>
+    </body>
+</html>
